@@ -1,0 +1,15 @@
+HSeparator
+HBoxContainer
+LineEdit
+Label
+TextEdit
+VBoxContainer
+Button
+TextureRect
+Control
+Area2D
+Node2D
+CollisionShape2D
+FileDialog
+AudioStreamPlayer
+ColorRect
