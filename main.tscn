@@ -47,27 +47,47 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -170.0
+offset_top = -268.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.15930319, 0.16756171, 0.18132675, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SoundOptions" unique_id=693259975]
+[node name="Name" type="HBoxContainer" parent="SoundOptions" unique_id=693259975]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 24.0
 offset_right = 538.0
 offset_bottom = 64.0
 
-[node name="NameLabel" type="Label" parent="SoundOptions/HBoxContainer" unique_id=2053578530]
+[node name="NameLabel" type="Label" parent="SoundOptions/Name" unique_id=2053578530]
 layout_mode = 2
 text = "Name   "
 
-[node name="NameEditor" type="LineEdit" parent="SoundOptions/HBoxContainer" unique_id=926218417]
+[node name="NameEditor" type="LineEdit" parent="SoundOptions/Name" unique_id=926218417]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
+
+[node name="Volume" type="HBoxContainer" parent="SoundOptions" unique_id=520024599]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 85.0
+offset_right = 538.0
+offset_bottom = 125.0
+
+[node name="VoumeLabel" type="Label" parent="SoundOptions/Volume" unique_id=1215651859]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="SoundOptions/Volume" unique_id=1729950849]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 2.0
+step = 0.001
+value = 1.0
 
 [node name="FileDialog" type="FileDialog" parent="." unique_id=533295983]
 unique_name_in_owner = true
@@ -79,5 +99,6 @@ filters = PackedStringArray("*.wav", "*.Ogg", "*.mp3")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/StopAll" to="." method="_on_stop_all_pressed"]
-[connection signal="text_submitted" from="SoundOptions/HBoxContainer/NameEditor" to="." method="_on_name_editor_submitted"]
+[connection signal="text_submitted" from="SoundOptions/Name/NameEditor" to="." method="_on_name_editor_submitted"]
+[connection signal="value_changed" from="SoundOptions/Volume/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_file_selected"]

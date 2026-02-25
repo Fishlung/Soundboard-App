@@ -1,9 +1,10 @@
+HSlider
+VBoxContainer
 HSeparator
 HBoxContainer
 LineEdit
 Label
 TextEdit
-VBoxContainer
 Button
 TextureRect
 Control
@@ -12,4 +13,3 @@ Node2D
 CollisionShape2D
 FileDialog
 AudioStreamPlayer
-ColorRect

@@ -8,6 +8,7 @@ var sound_name: String:
 	set (new_name):
 		sound_name = new_name
 		self.text = sound_name
+
 var sound_path: String:
 	set(new_path):
 		var filetype = new_path.get_slice(".", new_path.get_slice_count(".") - 1).to_lower()
@@ -22,6 +23,11 @@ var sound_path: String:
 		%AudioStreamPlayer.stream = stream
 		sound_path = new_path
 
+var volume: float:
+	set(new_volume):
+		volume = new_volume
+		%AudioStreamPlayer.volume_db = linear_to_db(volume)
+
 func _on_pressed() -> void:
 	if Input.is_action_just_released("left_click"):
 		if sound_file.playing:
@@ -35,5 +41,6 @@ func save():
 	var save_data = {
 		"name" = sound_name,
 		"path" = sound_path,
+		"volume" = volume,
 	}
 	return save_data
