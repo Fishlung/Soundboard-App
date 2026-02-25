@@ -29,7 +29,6 @@ func _ready() -> void:
 		add_button(button_data["path"], button_name, button_volume)
 	save_buttons()
 
-
 func _on_import_pressed() -> void:
 	%FileDialog.popup()
 
@@ -73,7 +72,9 @@ func _on_name_editor_submitted(new_text: String) -> void:
 	edited_button.sound_name = new_text
 	save_buttons()
 
-
 func _on_volume_slider_value_changed(value: float) -> void:
 	edited_button.volume = value
 	save_buttons()
+
+func _on_options_button_pressed() -> void:
+	%OptionsMenu.visible = !%OptionsMenu.visible

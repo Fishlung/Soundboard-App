@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d2sddcpaukqio"]
 
 [ext_resource type="Script" uid="uid://cmodrkxcdi2p0" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://y44q6j28vvvu" path="res://options.tscn" id="2_0xm2m"]
 
 [node name="Control" type="Control" unique_id=2002708806]
 layout_mode = 3
@@ -10,6 +11,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0xm2m")
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=533295983]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.wav", "*.Ogg", "*.mp3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=235984016]
 layout_mode = 0
@@ -89,16 +98,24 @@ max_value = 2.0
 step = 0.001
 value = 1.0
 
-[node name="FileDialog" type="FileDialog" parent="." unique_id=533295983]
-unique_name_in_owner = true
-oversampling_override = 1.0
-title = "Open a File"
-file_mode = 0
-access = 2
-filters = PackedStringArray("*.wav", "*.Ogg", "*.mp3")
+[node name="OptionsButton" type="Button" parent="." unique_id=393821585]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Options"
 
+[node name="OptionsMenu" parent="." unique_id=471212449 instance=ExtResource("2_0xm2m")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="file_selected" from="FileDialog" to="." method="_file_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/StopAll" to="." method="_on_stop_all_pressed"]
 [connection signal="text_submitted" from="SoundOptions/Name/NameEditor" to="." method="_on_name_editor_submitted"]
 [connection signal="value_changed" from="SoundOptions/Volume/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
-[connection signal="file_selected" from="FileDialog" to="." method="_file_selected"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
