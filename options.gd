@@ -1,7 +1,8 @@
 extends Control
 
 var settings = {
-	"speaker" = "Default"
+	"speaker" = "Default",
+	"vac" = "Default"
 }
 
 func _input(_event: InputEvent) -> void:
@@ -16,7 +17,10 @@ func _ready() -> void:
 
 func _on_speaker_selected(index: int) -> void:
 	settings["speaker"] = AudioServer.get_output_device_list()[index]
-	AudioServer.output_device = AudioServer.get_output_device_list()[index]
+	save_user_settings()
+
+func _on_vac_selected(index: int) -> void:
+	settings["vac"] = AudioServer.get_output_device_list()[index]
 	save_user_settings()
 
 func load_user_settings() -> void:
@@ -34,9 +38,11 @@ func load_user_settings() -> void:
 		var user_data = json.data
 		if AudioServer.get_output_device_list().has(user_data["speaker"]):
 			settings["speaker"] = user_data["speaker"]
-			print("Data Found")
-	AudioServer.output_device = settings["speaker"]
+		if AudioServer.get_output_device_list().has(user_data["vac"]):
+			settings["vac"] = user_data["vac"]
+	%VacDropdown.selected = AudioServer.get_output_device_list().find(settings["vac"])
 	%SpeakerDropdown.selected = AudioServer.get_output_device_list().find(settings["speaker"])
+	AudioServer.output_device = settings["speaker"]
 
 func save_user_settings():
 	var user_save = FileAccess.open("user://user_data.json", FileAccess.WRITE)
