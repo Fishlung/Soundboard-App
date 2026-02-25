@@ -39,6 +39,12 @@ text = "Stop all sounds"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=536728982]
 layout_mode = 2
 
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer" unique_id=1380227880]
+custom_minimum_size = Vector2(1.065, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Active"
+
 [node name="SoundContainer" type="GridContainer" parent="VBoxContainer" unique_id=495359252]
 unique_name_in_owner = true
 layout_mode = 2
@@ -107,11 +113,6 @@ offset_left = -70.0
 offset_bottom = 31.0
 grow_horizontal = 0
 text = "Options"
-
-[node name="OptionsMenu" parent="." unique_id=471212449 instance=ExtResource("2_0xm2m")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
 
 [connection signal="file_selected" from="FileDialog" to="." method="_file_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
