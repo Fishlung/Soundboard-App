@@ -39,8 +39,8 @@ text = "Stop all sounds"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=536728982]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer" unique_id=1380227880]
-custom_minimum_size = Vector2(1.065, 0)
+[node name="ActiveToggle" type="CheckButton" parent="VBoxContainer" unique_id=1380227880]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Active"
@@ -55,14 +55,13 @@ columns = 2
 
 [node name="SoundOptions" type="ColorRect" parent="." unique_id=924983441]
 unique_name_in_owner = true
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -268.0
+offset_top = -179.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.15930319, 0.16756171, 0.18132675, 1)
@@ -104,6 +103,11 @@ max_value = 2.0
 step = 0.001
 value = 1.0
 
+[node name="OptionsMenu" parent="." unique_id=471212449 instance=ExtResource("2_0xm2m")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
 [node name="OptionsButton" type="Button" parent="." unique_id=393821585]
 layout_mode = 1
 anchors_preset = 1
@@ -117,6 +121,7 @@ text = "Options"
 [connection signal="file_selected" from="FileDialog" to="." method="_file_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Import" to="." method="_on_import_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/StopAll" to="." method="_on_stop_all_pressed"]
+[connection signal="toggled" from="VBoxContainer/ActiveToggle" to="." method="_on_active_toggle"]
 [connection signal="text_submitted" from="SoundOptions/Name/NameEditor" to="." method="_on_name_editor_submitted"]
 [connection signal="value_changed" from="SoundOptions/Volume/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]

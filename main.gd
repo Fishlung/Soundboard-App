@@ -3,30 +3,7 @@ extends Control
 var edited_button
 
 func _ready() -> void:
-	if !FileAccess.file_exists("user://buttons.json"):
-		print("no save data")
-		return
-	var button_save = FileAccess.open("user://buttons.json", FileAccess.READ)
-	while button_save.get_position() < button_save.get_length():
-		var json_string = button_save.get_line()
-		var json = JSON.new()
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
-		var button_data = json.data
-		if !button_data.has("path"):
-			printerr("No path found for button. Skipping.")
-			continue
-		
-		var button_name = "Untitled Button"
-		var button_volume = 1
-		
-		if button_data.has("name"):
-			button_name = button_data["name"]
-		if button_data.has("volume"):
-			button_volume = button_data["volume"]
-		add_button(button_data["path"], button_name, button_volume)
+	load_buttons()
 	save_buttons()
 
 func _on_import_pressed() -> void:
@@ -78,3 +55,41 @@ func _on_volume_slider_value_changed(value: float) -> void:
 
 func _on_options_button_pressed() -> void:
 	%OptionsMenu.visible = !%OptionsMenu.visible
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		%OptionsMenu.visible = false
+
+func _on_active_toggle(toggled_on: bool) -> void:
+	_on_stop_all_pressed()
+	if toggled_on:
+		AudioServer.output_device = %OptionsMenu.settings["vac"]
+	else: 
+		AudioServer.output_device = %OptionsMenu.settings["speaker"]
+	
+
+func load_buttons():
+	if !FileAccess.file_exists("user://buttons.json"):
+		print("no save data")
+		return
+	var button_save = FileAccess.open("user://buttons.json", FileAccess.READ)
+	while button_save.get_position() < button_save.get_length():
+		var json_string = button_save.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		var button_data = json.data
+		if !button_data.has("path"):
+			printerr("No path found for button. Skipping.")
+			continue
+		
+		var button_name = "Untitled Button"
+		var button_volume = 1
+		
+		if button_data.has("name"):
+			button_name = button_data["name"]
+		if button_data.has("volume"):
+			button_volume = button_data["volume"]
+		add_button(button_data["path"], button_name, button_volume)

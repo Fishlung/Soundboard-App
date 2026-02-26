@@ -5,10 +5,6 @@ var settings = {
 	"vac" = "Default"
 }
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		%OptionsMenu.visible = false
-
 func _ready() -> void:
 	for device in AudioServer.get_output_device_list():
 		%SpeakerDropdown.add_item(device)
