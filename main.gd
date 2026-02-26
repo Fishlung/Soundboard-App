@@ -10,6 +10,9 @@ func _on_import_pressed() -> void:
 	%FileDialog.popup()
 
 func _on_stop_all_pressed() -> void:
+	stop_all()
+
+func stop_all():
 	for child in %SoundOptions.get_children():
 		if child is SoundButton:
 			child.sound_file.stop()
@@ -29,6 +32,13 @@ func add_button(path: String, Sound_Name: String, Sound_Volume: float):
 	new_button.volume = Sound_Volume
 	new_button.right_clicked.connect(on_button_right_click)
 	%SoundContainer.add_child(new_button)
+
+func delete_button(button: SoundButton):
+	var saved_sounds = DirAccess.open("user://")
+	saved_sounds.remove(button.sound_path)
+	button.queue_free()
+	await get_tree().process_frame
+	save_buttons()
 
 func save_buttons():
 	var button_save = FileAccess.open("user://buttons.json", FileAccess.WRITE)
@@ -53,6 +63,18 @@ func _on_volume_slider_value_changed(value: float) -> void:
 	edited_button.volume = value
 	save_buttons()
 
+func _on_delete_pressed():
+	%DeleteButton.visible = false
+	%DeleteConfirm.visible = true
+
+func _on_delete_cancel():
+	%DeleteButton.visible = true
+	%DeleteConfirm.visible = false
+
+func _on_delete_yes_button_pressed() -> void:
+	delete_button(edited_button)
+	%SoundOptions.visible = false
+
 func _on_options_button_pressed() -> void:
 	%OptionsMenu.visible = !%OptionsMenu.visible
 
@@ -66,7 +88,6 @@ func _on_active_toggle(toggled_on: bool) -> void:
 		AudioServer.output_device = %OptionsMenu.settings["vac"]
 	else: 
 		AudioServer.output_device = %OptionsMenu.settings["speaker"]
-	
 
 func load_buttons():
 	if !FileAccess.file_exists("user://buttons.json"):
