@@ -16,26 +16,26 @@ script = ExtResource("1_0xm2m")
 unique_name_in_owner = true
 oversampling_override = 1.0
 title = "Open a File"
+size = Vector2i(966, 360)
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.wav", "*.Ogg", "*.mp3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=235984016]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.8919753
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+offset_right = 245.0
+offset_bottom = 608.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=448205988]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="Import" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=803927011]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "Import Sound"
 
 [node name="StopAll" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=823800168]
@@ -214,6 +214,11 @@ text = "<="
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="OptionsButton" type="Button" parent="." unique_id=393821585]
 layout_mode = 1
