@@ -47,7 +47,7 @@ func save_buttons():
 		button_save.store_line(JSON.stringify(button_data))
 
 func on_button_right_click(button: SoundButton):
-	if %SoundOptions.visible:
+	if %SoundOptions.visible && button == edited_button:
 		%SoundOptions.visible = false
 		return
 	edited_button = button
