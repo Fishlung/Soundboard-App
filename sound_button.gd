@@ -1,4 +1,4 @@
-extends Control
+extends Button
 class_name SoundButton
 
 signal right_clicked

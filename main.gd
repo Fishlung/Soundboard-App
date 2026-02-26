@@ -13,7 +13,7 @@ func _on_stop_all_pressed() -> void:
 	stop_all()
 
 func stop_all():
-	for child in %SoundOptions.get_children():
+	for child in %SoundContainer.get_children():
 		if child is SoundButton:
 			child.sound_file.stop()
 
