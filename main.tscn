@@ -69,6 +69,7 @@ columns = 8
 
 [node name="SoundOptions" type="ColorRect" parent="." unique_id=924983441]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 12
