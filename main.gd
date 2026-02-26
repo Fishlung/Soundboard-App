@@ -75,6 +75,15 @@ func _on_delete_yes_button_pressed() -> void:
 	delete_button(edited_button)
 	%SoundOptions.visible = false
 
+func _on_shift_right_pressed() -> void:
+	if edited_button.get_index() == %SoundContainer.get_child_count() - 1:
+		%SoundContainer.move_child(edited_button, 0)
+	else:
+		%SoundContainer.move_child(edited_button, edited_button.get_index() + 1)
+
+func _on_shift_left_pressed() -> void:
+	%SoundContainer.move_child(edited_button, edited_button.get_index() - 1)
+
 func _on_options_button_pressed() -> void:
 	%OptionsMenu.visible = !%OptionsMenu.visible
 

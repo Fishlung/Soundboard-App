@@ -26,10 +26,12 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.8919753
 grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=448205988]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Import" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=803927011]
 custom_minimum_size = Vector2(0, 50)
@@ -67,7 +69,6 @@ columns = 8
 
 [node name="SoundOptions" type="ColorRect" parent="." unique_id=924983441]
 unique_name_in_owner = true
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 12
@@ -175,6 +176,39 @@ offset_right = 21.0
 offset_bottom = 20.0
 text = "No"
 
+[node name="IndexShifting" type="Control" parent="SoundOptions" unique_id=1624018609]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -122.0
+offset_bottom = 63.0
+grow_horizontal = 0
+
+[node name="ShiftRight" type="Button" parent="SoundOptions/IndexShifting" unique_id=885474926]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 24.0
+offset_right = -19.0
+offset_bottom = 55.0
+grow_horizontal = 0
+text = "=>"
+
+[node name="ShiftLeft" type="Button" parent="SoundOptions/IndexShifting" unique_id=1888434507]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 24.0
+offset_right = -80.0
+offset_bottom = 55.0
+grow_horizontal = 0
+text = "<="
+
 [node name="OptionsMenu" parent="." unique_id=471212449 instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
 visible = false
@@ -199,4 +233,6 @@ text = "Options"
 [connection signal="pressed" from="SoundOptions/Deletion/DeleteButton" to="." method="_on_delete_pressed"]
 [connection signal="pressed" from="SoundOptions/Deletion/DeleteConfirm/DeleteYes" to="." method="_on_delete_yes_button_pressed"]
 [connection signal="pressed" from="SoundOptions/Deletion/DeleteConfirm/DeleteNo" to="." method="_on_delete_cancel"]
+[connection signal="pressed" from="SoundOptions/IndexShifting/ShiftRight" to="." method="_on_shift_right_pressed"]
+[connection signal="pressed" from="SoundOptions/IndexShifting/ShiftLeft" to="." method="_on_shift_left_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
