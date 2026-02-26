@@ -21,37 +21,49 @@ access = 2
 filters = PackedStringArray("*.wav", "*.Ogg", "*.mp3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=235984016]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 35.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.8919753
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=448205988]
 layout_mode = 2
 
 [node name="Import" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=803927011]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Import Sound"
 
 [node name="StopAll" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=823800168]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Stop all sounds"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=536728982]
+visible = false
 layout_mode = 2
 
 [node name="ActiveToggle" type="CheckButton" parent="VBoxContainer" unique_id=1380227880]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Active"
 
-[node name="SoundContainer" type="GridContainer" parent="VBoxContainer" unique_id=495359252]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1489369877]
+clip_contents = false
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="SoundContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer" unique_id=495359252]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/h_separation = 200
-theme_override_constants/v_separation = 200
-columns = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 8
 
 [node name="SoundOptions" type="ColorRect" parent="." unique_id=924983441]
 unique_name_in_owner = true
